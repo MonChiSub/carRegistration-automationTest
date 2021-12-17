@@ -86,11 +86,7 @@ public class StepDefinitions {
                     break;
                 }
                 if(x == carInput.size() -1) {
-                    try {
-                        carFound.get(i);
-                    } catch (IndexOutOfBoundsException e) {
-                        carNotFound.add(carOutput.get(i));
-                    }
+                    carNotFound.add(carOutput.get(i));
                 }
             }
         }
@@ -110,11 +106,18 @@ public class StepDefinitions {
         for(Car c : carNotFound) {
             System.out.println(c);
         }
+//        for(int i = 0; i < carOutput.size(); i++) {
+//            if(!carInput.toString().contains(carOutput.get(i).toString())) {
+//                System.out.println(carOutput.get(i)+" was not found");
+//            }
+//        } Method of doing a not found / found without 2 new arrayLists...
     }
 
     @Then("User receives details of their car by reg num")
     public void thenMethod() {
-        assertTrue(carNotFound.size() == 0, carNotFound.toString()+" did not match from the input file");
+        for(int i = 0; i < carInput.size(); i++) {
+            assertTrue(carInput.toString().contains(carOutput.get(i).toString()), carOutput.get(i)+" could not be found");
+        }
     }
 
     public void inputFile() throws IOException {
