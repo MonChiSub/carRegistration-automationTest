@@ -106,11 +106,6 @@ public class StepDefinitions {
         for(Car c : carNotFound) {
             System.out.println(c);
         }
-//        for(int i = 0; i < carOutput.size(); i++) {
-//            if(!carInput.toString().contains(carOutput.get(i).toString())) {
-//                System.out.println(carOutput.get(i)+" was not found");
-//            }
-//        } Method of doing a not found / found without 2 new arrayLists...
     }
 
     @Then("User receives details of their car by reg num")
