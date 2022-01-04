@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.FileNotFoundException;
 
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -53,14 +54,14 @@ public class StepDefinitions {
         for(int i = 0; i < carRegFound.size(); i++) {
             driver.findElement(By.id("vrm-input")).sendKeys(carRegFound.get(i));
             driver.findElement(By.className("jsx-1164392954")).click();
-            Thread.sleep(2500);
+            driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
             boolean isDisplayed = false;
             try {
                 isDisplayed = driver.findElement(By.className("jsx-4054927204")).isDisplayed();
             } catch (NoSuchElementException e) {
                 ;
             }
-            Thread.sleep(1000);
+            driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
             pRegistration = carRegFound.get(i);
             if(isDisplayed) {
                 pMake = driver.findElement(By.xpath("/html/body/div/div/div[2]/div[5]/div[1]/div/span/div[2]/dl[2]/dd")).getText();
@@ -73,7 +74,7 @@ public class StepDefinitions {
                 carInput.add(new Car(pRegistration));
             }
             driver.navigate().to("https://cartaxcheck.co.uk/");
-            Thread.sleep(1000);
+            driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         }
     }
 
