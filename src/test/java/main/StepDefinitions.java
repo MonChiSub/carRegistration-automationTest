@@ -49,7 +49,7 @@ public class StepDefinitions {
     }
 
     @Given("User inputs their car reg on the website")
-    public void givenMethod() throws InterruptedException {
+    public void WebsiteInput() throws InterruptedException {
         for(int i = 0; i < carRegFound.size(); i++) {
             driver.findElement(By.id("vrm-input")).sendKeys(carRegFound.get(i));
             driver.findElement(By.className("jsx-1164392954")).click();
@@ -78,7 +78,7 @@ public class StepDefinitions {
     }
 
     @When("User wants to check their car details")
-    public void whenMethod() {
+    public void gatherInformation() {
         for(int i = 0; i < carOutput.size(); i++) {
             for(int x = 0; x < carInput.size(); x++) {
                 if (carOutput.get(i).toString().trim().equals(carInput.get(x).toString().trim())) {
@@ -109,7 +109,7 @@ public class StepDefinitions {
     }
 
     @Then("User receives details of their car by reg num")
-    public void thenMethod() {
+    public void checkInformation() {
         for(int i = 0; i < carInput.size(); i++) {
             assertTrue(carInput.toString().contains(carOutput.get(i).toString()), carOutput.get(i)+" could not be found");
         }
